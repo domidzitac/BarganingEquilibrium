@@ -2,12 +2,8 @@ import numpy as np
 from scipy.linalg import norm,solve
 #import pandas as pd
 from ast import literal_eval
-#For parallel computing
-import modin.pandas as pd
-import ray
-ray.init()
-from modin.config import Engine
-Engine.put("ray")  # Modin will use Ray
+
+import pandas as pd
 
 #Constants
 q = 2
