@@ -2,6 +2,7 @@ import numpy as np
 from scipy.linalg import norm,solve
 #import pandas as pd
 from ast import literal_eval
+from itertools import combinations
 
 import pandas as pd
 
@@ -34,15 +35,10 @@ if type_e == "symmetric_e_values":
   df_symmetric.to_csv('symmetric_e_values_'+str(lower_bound)+'_'+str(upper_bound)+'.csv')
 
 if type_e == "asymmetric_e_values":
-  list_asymmetric=[]
-  for e1 in range(lower_bound,upper_bound+1):
-    for e2 in range(lower_bound,upper_bound+1):
-      for e3 in range(lower_bound,upper_bound+1):
-        list_asymmetric.append([e1,e2,e3])
-  print(list_asymmetric)
+  L = [*range(lower_bound, upper_bound+1, range_step)]
+  list_asymmetric = list(combinations(L, 3)) 
   df_asymmetric = pd.DataFrame()
   df_asymmetric['e'] = list_asymmetric
-  df_asymmetric
   df_asymmetric.to_csv('asymmetric_e_values_'+str(lower_bound)+'_'+str(upper_bound)+'.csv')
 
 #Read the e's
